@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="author-date" version="1.0" default-locale="en-US">
+  <!-- This style was edited with the Visual CSL Editor (https://editor.citationstyles.org/visualEditor/) -->
+  <info>
+    <title>Journal of Animal Science (Custom Indonesian Guideline)</title>
+    <id>http://www.zotero.org/styles/journal-of-animal-science</id>
+    <link href="http://www.zotero.org/styles/journal-of-animal-science" rel="self"/>
+    <author>
+      <name>Custom</name>
+    </author>
+    <category citation-format="author-date"/>
+    <category field="biology"/>
+    <updated>2026-01-09T14:22:59+00:00</updated>
+  </info>
+  <macro name="author">
+    <names variable="author" delimiter=", ">
+      <name name-as-sort-order="first" sort-separator=", " initialize-with=". " and="text"/>
+      <substitute>
+        <text value="Anonim"/>
+      </substitute>
+    </names>
+  </macro>
+  <macro name="author-short">
+    <names variable="author" delimiter=", ">
+      <name form="short" initialize-with="." and="text"/>
+      <substitute>
+        <text value="Anonim"/>
+      </substitute>
+    </names>
+  </macro>
+  <macro name="year">
+    <choose>
+      <if variable="issued">
+        <date variable="issued">
+          <date-part name="year"/>
+        </date>
+      </if>
+      <else>
+        <text value="Tanpa tahun"/>
+      </else>
+    </choose>
+  </macro>
+  <macro name="article-title">
+    <text variable="title" text-case="sentence"/>
+  </macro>
+  <macro name="book-title">
+    <text variable="title" text-case="title"/>
+  </macro>
+  <macro name="journal">
+    <text variable="container-title" form="short"/>
+  </macro>
+  <macro name="journal-pages">
+    <group delimiter=": ">
+      <text variable="volume"/>
+      <text variable="page"/>
+    </group>
+  </macro>
+  <macro name="edition">
+    <choose>
+      <if is-numeric="edition">
+        <group delimiter=" ">
+          <number variable="edition" form="ordinal"/>
+          <text term="edition" form="short"/>
+        </group>
+      </if>
+      <else>
+        <text variable="edition"/>
+      </else>
+    </choose>
+  </macro>
+  <macro name="publisher">
+    <group delimiter=", ">
+      <text variable="publisher"/>
+      <text variable="publisher-place"/>
+    </group>
+  </macro>
+  <macro name="pages-pp">
+    <choose>
+      <if variable="page">
+        <group>
+          <label variable="page" form="short" suffix=" "/>
+          <text variable="page"/>
+        </group>
+      </if>
+    </choose>
+  </macro>
+  <citation et-al-min="3" et-al-use-first="1">
+    <layout prefix="(" suffix=")" delimiter="; ">
+      <group delimiter=", ">
+        <text macro="author-short"/>
+        <text macro="year"/>
+      </group>
+    </layout>
+  </citation>
+  <bibliography hanging-indent="true" et-al-min="99" et-al-use-first="98">
+    <sort>
+      <key macro="author"/>
+      <key macro="year"/>
+    </sort>
+    <layout suffix=".">
+      <group delimiter=". ">
+        <text macro="author"/>
+        <text macro="year"/>
+      </group>
+      <group prefix=". ">
+        <choose>
+          <if type="article-journal article-magazine article-newspaper" match="any">
+            <text macro="article-title"/>
+          </if>
+          <else>
+            <text macro="book-title"/>
+          </else>
+        </choose>
+      </group>
+      <choose>
+        <if type="article-journal article-magazine article-newspaper" match="any">
+          <group prefix=". " delimiter=" ">
+            <text macro="journal"/>
+            <text macro="journal-pages"/>
+          </group>
+        </if>
+        <else>
+          <group prefix=". " delimiter=". ">
+            <text macro="edition"/>
+            <text macro="publisher"/>
+            <text macro="pages-pp"/>
+          </group>
+        </else>
+      </choose>
+    </layout>
+  </bibliography>
+</style>
